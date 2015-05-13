@@ -13,9 +13,10 @@ import util.FrameUtil;
 
 @SuppressWarnings("serial")
 public class JPanelGame extends JPanel {
-        private GameDto dto;
-        private GameAct act;
-	private ButtonExit buttonExit;
+    private GameDto dto;
+    private GameAct act;
+	
+    private ButtonExit buttonExit;
 	
 	public JPanelGame(GameDto dto) {
 		this.setLayout(null);

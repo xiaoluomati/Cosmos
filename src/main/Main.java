@@ -9,8 +9,8 @@ import ui.*;
 public class Main {
 	
 	public static void main(String[] args) {	
-	        //创建游戏数据源
-                GameDto dto = new GameDto();
+	    //创建游戏数据源
+        GameDto dto = new GameDto();
                 
 		JPanelGame jPanelGame = new JPanelGame(dto);
 		
@@ -19,10 +19,10 @@ public class Main {
 		GameControl gameControl = new GameControl(gameService,jPanelGame);
 		
 		//创建玩家控制器（连接游戏控制器）
-                PlayerControl playerControl = new PlayerControl(gameControl);
+        PlayerControl playerControl = new PlayerControl(gameControl);
                 
-                //安装玩家控制器
-                jPanelGame.setGameControl(playerControl);
+        //安装玩家控制器
+        jPanelGame.setGameControl(playerControl);
                 
 		JPanelStart jPanelStart = new JPanelStart(gameControl);
 		
