@@ -2,16 +2,21 @@ package entity;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
-
+import ui.Img;
 import util.FrameUtil;
 
 public class GameAct {
-        
+//      TODO
         /**
-         * 星球位置(玩家控制的对象)
+         *星球的种类数
+         */
+        public static final int MAX_TYPE = 10;
+        /**
+         * 星球图像
+         */
+        public static final int STAR_SIZE = 100;
+        /**
+         * 星球的左上角坐标(玩家控制的对象)
          */
         private Point starLocation;
         
@@ -19,40 +24,27 @@ public class GameAct {
          * 星球编号(随机)
          */
         private int starType; 
-        //TODO
-        /**
-         *星球的种类数
-         */
-        private static final int MAX_TYPE = 12;
+
         
         /**
          * 星球图片
          */
-        private Image starImage;
-        
-        private static ArrayList<Image> TYPE_CONFIG;
-        
-        static{
-                //TODO
-                TYPE_CONFIG = new ArrayList<>();
-                for (int i = 0; i < MAX_TYPE; i++) {
-                        TYPE_CONFIG.add(new ImageIcon("graphics/stars/star"  + (i + 1) + ".png").getImage());
-                }
-        }
-        
+        private Image starImage  ;
+
         private static final int nearSide = 64;
         
         public GameAct(int typeCode) {
-                this.init(typeCode);
+                this.init(typeCode);                
         }
 
         private void init(int typeCode) {
                 //开始时的星球图像编号
                 this.starType = typeCode;
                 //开始时的星球图像
-                this.starImage = TYPE_CONFIG.get(starType);
-                int starLocationX = (int) (FrameUtil.SCREEN_SIZE.getHeight()/2);
-                int starLocationY = (int) (FrameUtil.SCREEN_SIZE.getWidth()/2);
+                this.starImage = Img.STARS.get(starType);
+                
+                int starLocationX = (int) (FrameUtil.SCREEN_SIZE.getWidth() - STAR_SIZE)/2;
+                int starLocationY = (int) (FrameUtil.SCREEN_SIZE.getHeight() - STAR_SIZE)/2;
                 this.starLocation = new Point(starLocationX,starLocationY);
         }
         
@@ -61,15 +53,16 @@ public class GameAct {
                 int newY = this.starLocation.y + moveY;
                 if (isNearBorder(newX,newY)) {
                         //TODO 背景移动
+                        return;
                 }
                 starLocation.x = newX;
                 starLocation.y = newY;
         }
         private boolean isNearBorder(int newX, int newY) {     
                 int leftBorder = nearSide;
-                int rightBorder = (int) (FrameUtil.SCREEN_SIZE.getWidth() - nearSide);
+                int rightBorder = (int) (FrameUtil.SCREEN_SIZE.getWidth() - nearSide - STAR_SIZE);
                 int upBorder = nearSide;
-                int downBorder = (int) (FrameUtil.SCREEN_SIZE.getHeight() - nearSide);
+                int downBorder = (int) (FrameUtil.SCREEN_SIZE.getHeight() - nearSide - STAR_SIZE);
                 return newX <= leftBorder || newX >= rightBorder || newY >= downBorder || newY <= upBorder;
         }
 
@@ -77,10 +70,17 @@ public class GameAct {
                 return starLocation;
         }
 
+        //TODO
         public void setStarLocation(Point starLocation) {
                 this.starLocation = starLocation;
         }
         
+        public int getStarType() {
+                return starType;
+        }
 
+        public Image getStarImage() {
+                return starImage;
+        }
         
 }

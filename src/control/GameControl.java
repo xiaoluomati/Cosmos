@@ -4,7 +4,7 @@ import service.GameService;
 import ui.JPanelGame;
 
 public class GameControl {
-	
+        
 	private GameService gameService;
 	
 	private JPanelGame panelGame;

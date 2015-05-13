@@ -1,6 +1,8 @@
 package ui;
 
 import java.awt.*;
+import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -19,4 +21,18 @@ public class Img {
 	public static final Image BG_START = new ImageIcon("graphics/background/bg00.jpg").getImage();
 	
 	public static final Image BG_GAME = new ImageIcon("graphics/background/bg02.jpg").getImage();
+		
+	public static final ArrayList<Image> STARS;
+        
+        static{
+                //背景图片数组
+                File dir = new File("graphics/stars");
+                File[] files = dir.listFiles();
+                STARS = new ArrayList<Image>();
+                for (File file : files) {
+                        if(file.isDirectory())
+                                continue;                       
+                        STARS.add(new ImageIcon(file.getPath()).getImage());
+                }
+        }
 }

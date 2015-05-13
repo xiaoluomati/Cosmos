@@ -5,6 +5,7 @@ import java.awt.Point;
 import entity.GameAct;
 
 public class GameDto {
+        
        /**
         * 本地存档
         */
