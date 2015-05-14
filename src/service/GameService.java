@@ -28,7 +28,7 @@ public class GameService {
 	}
 
 	public void startGame() {
-		this.frameStart.add(panelGame);
+		this.frameStart.setContentPane(panelGame);;
 	}
 
 	public void setFrameStart(JFrameStart frameStart) {

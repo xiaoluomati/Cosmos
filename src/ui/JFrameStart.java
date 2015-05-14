@@ -13,7 +13,7 @@ public class JFrameStart extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setUndecorated(true);
-		this.add(jPanelStart);
+		this.setContentPane(jPanelStart);
 		this.setVisible(true);
 	}
 }
