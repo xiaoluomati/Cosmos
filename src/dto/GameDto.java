@@ -17,7 +17,7 @@ public class GameDto {
        /**
         * 现在的文明发展程度(进度条比例)
         */
-       private double percent ;
+       private double percent;
        /**
         * 现在星球位置
         */

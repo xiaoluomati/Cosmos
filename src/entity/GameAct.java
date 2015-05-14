@@ -14,23 +14,28 @@ public class GameAct {
         /**
          * 星球图像
          */
-        public static final int STAR_SIZE = 100;
+        public static final int STAR_SIZE = 50;
         /**
          * 星球的左上角坐标(玩家控制的对象)
          */
-        private Point starLocation;
-        
+        private Point starLocation;       
         /**
          * 星球编号(随机)
          */
-        private int starType; 
-
-        
+        private int starType;      
         /**
          * 星球图片
          */
         private Image starImage  ;
-
+        /**
+         * 现在的文明发展等级
+         */
+        private int nowLevel;
+        /**
+         * 现在的文明发展程度(进度条比例)
+         */
+        private double percent;
+        
         private static final int nearSide = 64;
         
         public GameAct(int typeCode) {
@@ -81,6 +86,14 @@ public class GameAct {
 
         public Image getStarImage() {
                 return starImage;
+        }
+
+        public int getNowLevel() {
+                return nowLevel;
+        }
+
+        public double getPercent() {
+                return percent;
         }
         
 }
