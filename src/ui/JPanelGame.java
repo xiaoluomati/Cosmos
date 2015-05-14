@@ -48,10 +48,4 @@ public class JPanelGame extends JPanel {
 		this.requestFocus();
 	}
 
-	/**
-	 * 安装玩家控制器
-	 */
-	public void setGameControl(PlayerControl control) {
-		this.addKeyListener(control);
-	}
 }
