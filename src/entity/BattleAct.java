@@ -16,13 +16,18 @@ public class BattleAct {
          * 随机数生成器
          */
         private Random random = new Random();
-        private int direction;
+        /**
+         * 确定攻击的方向
+         * 4个取值对应四个角的方向(右上角,逆时针)
+         */
+        private int direction1,direction2;
         
         public BattleAct(GameAct act) {
                 this.act = act;
                 this.battleLevel1 = random.nextInt(act.getNowLevel()) + 1;
                 this.battleLevel2 = act.getNowLevel();
-                this.direction = random.nextInt(4);
+                this.direction1 = random.nextInt(4);
+                this.direction2 = random.nextInt(4);
         }
 
         public void beginBattle() {
