@@ -7,8 +7,8 @@ import util.*;
 @SuppressWarnings("serial")
 public class JFrameStart extends JFrame {
 
-	public JFrameStart(JPanelStart jPanelStart) {
-
+	public JFrameStart(JPanelStart jPanelStart, JPanelGame jPanelGame) {
+		
 		this.setSize(FrameUtil.SCREEN_SIZE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);

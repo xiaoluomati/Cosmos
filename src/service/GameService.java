@@ -11,28 +11,23 @@ public class GameService {
 	 * 游戏数据对象
 	 */
 	private GameDto dto;
+	
 	/**
 	 * 随机数生成器
 	 */
 	private Random random = new Random();
 
-	private JPanelGame panelGame;
+	private JPanelGame jPanelGame;
 
-	private JFrameStart frameStart;
-
-	public GameService(JPanelGame panelGame, GameDto dto) {
-		this.panelGame = panelGame;
+	public GameService(JPanelGame jPanelGame, GameDto dto) {
+		this.jPanelGame = jPanelGame;
 		this.dto = dto;
 		GameAct act = new GameAct(random.nextInt(GameAct.MAX_TYPE));
 		dto.setGameAct(act);
 	}
 
 	public void startGame() {
-		this.frameStart.setContentPane(panelGame);;
-	}
-
-	public void setFrameStart(JFrameStart frameStart) {
-		this.frameStart = frameStart;
+		jPanelGame.setVisible(true);
 	}
 
 	// TODO 确定移动幅度

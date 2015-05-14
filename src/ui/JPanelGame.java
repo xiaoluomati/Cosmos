@@ -4,8 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
-import control.GameControl;
-import control.PlayerControl;
+import control.*;
 import dto.GameDto;
 import entity.GameAct;
 import util.FrameUtil;
@@ -27,6 +26,7 @@ public class JPanelGame extends JPanel {
 		this.setLayout(null);
 		this.initComponent();
 		this.addKeyListener(new PlayerControl(gameControl));
+		this.setVisible(false);
 	}
 
 	private void initComponent() {

@@ -6,8 +6,6 @@ import ui.*;
 
 public class GameControl {
     
-	private JFrameStart jFrameStart;
-	
 	// 游戏数据源
 	private GameDto gameDto;
 	
@@ -23,15 +21,14 @@ public class GameControl {
 	public GameControl() {
 		// 创建游戏数据源
 		this.gameDto = new GameDto();
-		// 创建游戏开始面板
-		this.jPanelStart = new JPanelStart(this);
 		// 创建游戏主面板
 		this.jPanelGame = new JPanelGame(this, gameDto);
+		// 创建游戏开始面板
+		this.jPanelStart = new JPanelStart(jPanelGame, this);
 		// 创建游戏逻辑块
 		this.gameService = new GameService(jPanelGame, gameDto);
-		
-		this.jFrameStart = new JFrameStart(jPanelStart);
-		this.gameService.setFrameStart(jFrameStart);
+		// 创建游戏窗口
+		new JFrameStart(jPanelStart, jPanelGame);
 	}
 	
 	public void startGame() {
