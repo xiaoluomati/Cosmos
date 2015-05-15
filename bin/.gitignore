@@ -1,8 +1,2 @@
-/config/
-/control/
-/dto/
-/entity/
 /main/
-/service/
-/ui/
-/util/
+/control/
