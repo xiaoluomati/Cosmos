@@ -1,17 +1,37 @@
 package control;
 
-import service.GameService;
-import ui.JPanelGame;
+import dto.*;
+import service.*;
+import ui.*;
 
 public class GameControl {
-        
+    
+	private JFrameStart jFrameStart;
+	
+	// 游戏数据源
+	private GameDto gameDto;
+	
+	// 游戏开始面板
+	private JPanelStart jPanelStart;
+	
+	// 游戏逻辑块
 	private GameService gameService;
 	
-	private JPanelGame panelGame;
+	// 游戏主面板
+	private JPanelGame jPanelGame;
 	
-	public GameControl(GameService gameService,JPanelGame panelGame) {
-		this.gameService = gameService;
-		this.panelGame = panelGame;
+	public GameControl() {
+		// 创建游戏数据源
+		this.gameDto = new GameDto();
+		// 创建游戏开始面板
+		this.jPanelStart = new JPanelStart(this);
+		// 创建游戏主面板
+		this.jPanelGame = new JPanelGame(this, gameDto);
+		// 创建游戏逻辑块
+		this.gameService = new GameService(jPanelGame, gameDto);
+		
+		this.jFrameStart = new JFrameStart(jPanelStart);
+		this.gameService.setFrameStart(jFrameStart);
 	}
 	
 	public void startGame() {
@@ -23,28 +43,28 @@ public class GameControl {
          */
         public void keyUp() {
                 this.gameService.keyUp();
-                this.panelGame.repaint();
+                this.jPanelGame.repaint();
         }
         /**
          * 控制方向键（下）
          */
         public void keyDown() {
                 this.gameService.keyDown();
-                this.panelGame.repaint();
+                this.jPanelGame.repaint();
         }
         /**
          * 控制方向键（左）
          */
         public void keyLeft() {
                 this.gameService.keyLeft();
-                this.panelGame.repaint();
+                this.jPanelGame.repaint();
         }
         /**
          * 控制方向键（右）
          */
         public void keyRight() {
                 this.gameService.keyRight();
-                this.panelGame.repaint();
+                this.jPanelGame.repaint();
         }
         
 }
