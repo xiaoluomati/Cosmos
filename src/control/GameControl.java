@@ -66,5 +66,10 @@ public class GameControl {
                 this.gameService.keyRight();
                 this.jPanelGame.repaint();
         }
+
+        public void testBattle() {
+                this.gameService.TESTkeyE();
+                this.jPanelGame.repaint();
+        }
         
 }
