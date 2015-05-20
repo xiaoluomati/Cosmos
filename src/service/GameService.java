@@ -3,6 +3,7 @@ package service;
 import java.util.Random;
 import config.GameConfig;
 import dto.GameDto;
+import entity.BattleAct;
 import entity.GameAct;
 import ui.*;
 
@@ -26,7 +27,9 @@ public class GameService {
 		this.jPanelGame = jPanelGame;
 		this.dto = dto;
 		GameAct act = new GameAct(random.nextInt(GameAct.MAX_TYPE));
+		BattleAct battleAct = new BattleAct(act, 1);
 		dto.setGameAct(act);
+		dto.setBattleAct(battleAct);
 	}
 
 	public void percentIncrease(){

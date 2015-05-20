@@ -2,6 +2,7 @@ package dto;
 
 import java.awt.Point;
 
+import entity.BattleAct;
 import entity.GameAct;
 
 public class GameDto {
@@ -25,6 +26,8 @@ public class GameDto {
 
 	private GameAct gameAct;
 
+	private BattleAct battleAct;
+	
 	public Player getDiskRecorder() {
 		return diskRecorder;
 	}
@@ -63,6 +66,14 @@ public class GameDto {
 
 	public void setNowLocation(Point nowLocation) {
 		this.nowLocation = nowLocation;
+	}
+
+	public BattleAct getBattleAct() {
+		return battleAct;
+	}
+
+	public void setBattleAct(BattleAct battleAct) {
+		this.battleAct = battleAct;
 	}
         
 }
