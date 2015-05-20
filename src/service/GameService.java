@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Random;
+import config.GameConfig;
 import dto.GameDto;
 import entity.GameAct;
 import ui.*;
@@ -19,6 +20,8 @@ public class GameService {
 
 	private JPanelGame jPanelGame;
 
+	private JFrameStart frameStart;
+	
 	public GameService(JPanelGame jPanelGame, GameDto dto) {
 		this.jPanelGame = jPanelGame;
 		this.dto = dto;
@@ -26,12 +29,29 @@ public class GameService {
 		dto.setGameAct(act);
 	}
 
+	public void percentIncrease(){
+	        this.dto.getGameAct().setPercent(this.dto.getPercent() + 0.01);
+	}
+	
+	public void levelUp() {
+	        if (this.dto.getPercent() == 1.0) {
+	                this.dto.getGameAct().setNowLevel(this.dto.getNowLevel() + 1);
+	                this.dto.getGameAct().setPercent(0.0);
+                }       
+        }
+
 	public void startGame() {
-		jPanelGame.setVisible(true);
+		this.frameStart.add(jPanelGame);
 	}
 
-	// TODO 确定移动幅度
-	private static int moveStep = 9;
+	public void setFrameStart(JFrameStart frameStart) {
+		this.frameStart = frameStart;
+	}
+	
+	/**
+	 * 移动幅度
+	 */
+	private static int moveStep = GameConfig.getSYSTEM_CONFIG().getMoveStep();
 
 	public void keyUp() {
 		this.dto.getGameAct().starMove(0, -moveStep);
@@ -45,8 +65,13 @@ public class GameService {
 		this.dto.getGameAct().starMove(-moveStep, 0);
 	}
 
+
 	public void keyRight() {
 		this.dto.getGameAct().starMove(moveStep, 0);
 	}
+
+    public void TESTkeyE() {
+                
+    }
 
 }

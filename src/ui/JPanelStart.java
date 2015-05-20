@@ -11,8 +11,6 @@ import util.*;
 @SuppressWarnings("serial")
 public class JPanelStart extends JPanel {
 
-	private JPanelGame jPanelGame;
-	
 	private GameControl gameControl;
 
 	private ButtonExit buttonExit;
@@ -33,12 +31,10 @@ public class JPanelStart extends JPanel {
 
 	private static final int BUTTON_HEIGHT = 60;
 
-	public JPanelStart(JPanelGame jPanelGame, GameControl gameControl) {
-		this.jPanelGame = jPanelGame;
+	public JPanelStart(GameControl gameControl) {
 		this.gameControl = gameControl;
-		this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		this.initComponent();
-		this.add(jPanelGame);
 	}
 
 	private void initComponent() {
@@ -88,6 +84,7 @@ public class JPanelStart extends JPanel {
 		buttonStart.setBounds(startX, startY, BUTTON_WIDTH, BUTTON_HEIGHT);
 		buttonStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				gameControl.startGame();
 			}
 		});

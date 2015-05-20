@@ -64,5 +64,5 @@ public class GameDto {
 	public void setNowLocation(Point nowLocation) {
 		this.nowLocation = nowLocation;
 	}
-
+        
 }

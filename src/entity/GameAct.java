@@ -2,19 +2,24 @@ package entity;
 
 import java.awt.Image;
 import java.awt.Point;
+
+import config.GameConfig;
 import ui.Img;
 import util.FrameUtil;
 
 public class GameAct {
-	// TODO
+
 	/**
 	 * 星球的种类数
 	 */
-	public static final int MAX_TYPE = 10;
+	public static final int MAX_TYPE = GameConfig.getSYSTEM_CONFIG()
+			.getNumOfStar();
 	/**
-	 * 星球图像
+	 * 星球图像大小
 	 */
-	public static final int STAR_SIZE = 50;
+	public static final int STAR_SIZE = GameConfig.getSYSTEM_CONFIG()
+			.getSizeOfStar();
+
 	/**
 	 * 星球的左上角坐标(玩家控制的对象)
 	 */
@@ -30,13 +35,14 @@ public class GameAct {
 	/**
 	 * 现在的文明发展等级
 	 */
-	private int nowLevel;
+	private int nowLevel = 0;
 	/**
 	 * 现在的文明发展程度(进度条比例)
 	 */
 	private double percent;
 
-	private static final int nearSide = 64;
+	private static final int nearSide = GameConfig.getSYSTEM_CONFIG()
+			.getNearSide();
 
 	public GameAct(int typeCode) {
 		this.init(typeCode);
@@ -77,6 +83,14 @@ public class GameAct {
 		return starLocation;
 	}
 
+	public void setNowLevel(int nowLevel) {
+		this.nowLevel = nowLevel;
+	}
+
+	public void setPercent(double percent) {
+		this.percent = percent;
+	}
+
 	// TODO
 	public void setStarLocation(Point starLocation) {
 		this.starLocation = starLocation;
@@ -98,4 +112,7 @@ public class GameAct {
 		return percent;
 	}
 
+	public int getNearside() {
+		return nearSide;
+	}
 }

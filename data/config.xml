@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+	<frame buttonW = "160" buttonH = "40">
+	</frame>
+	
+	<system numOfStar = "10" sizeOfStar = "50" nearSide = "64" moveStep = "9">
+	</system>
+	
+	<data>
+		<dataA className = "dao.DataDisk">
+			<param key = "path" value = "data/record.dat"/>
+		</dataA>
+	</data>
+</game>

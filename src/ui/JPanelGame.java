@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import control.*;
 import dto.GameDto;
+import entity.BattleAct;
 import entity.GameAct;
 import util.FrameUtil;
 
@@ -16,6 +17,8 @@ public class JPanelGame extends JPanel {
 
 	private GameAct act;
 
+//	private BattleAct battleAct;
+	
 	private GameControl gameControl;
 
 	private ButtonExit buttonExit;
@@ -26,7 +29,6 @@ public class JPanelGame extends JPanel {
 		this.setLayout(null);
 		this.initComponent();
 		this.addKeyListener(new PlayerControl(gameControl));
-		this.setVisible(false);
 	}
 
 	private void initComponent() {
@@ -41,10 +43,13 @@ public class JPanelGame extends JPanel {
 		g.drawImage(Img.BG_GAME, 0, 0, FrameUtil.SCREEN_SIZE.width,
 				FrameUtil.SCREEN_SIZE.height, null);
 		this.act = dto.getGameAct();
+		
 		g.drawImage(act.getStarImage(), act.getStarLocation().x,
 				act.getStarLocation().y, GameAct.STAR_SIZE, GameAct.STAR_SIZE,
 				null);
-		// 返回焦点
+//		this.battleAct = new BattleAct(act);
+//		battleAct.battleMove(g, 1, battleAct.directionToPoint(0), act.getStarLocation());
+// 返回焦点
 		this.requestFocus();
 	}
 

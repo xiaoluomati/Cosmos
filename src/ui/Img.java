@@ -23,7 +23,7 @@ public class Img {
 	public static final Image BG_GAME = new ImageIcon("graphics/background/bg02.jpg").getImage();
 		
 	public static final ArrayList<Image> STARS;
-        
+        	
         static{
                 //背景图片数组
                 File dir = new File("graphics/stars");
@@ -33,6 +33,20 @@ public class Img {
                         if(file.isDirectory())
                                 continue;                       
                         STARS.add(new ImageIcon(file.getPath()).getImage());
+                }
+        }
+        
+        public static final ArrayList<Image> BATTLES;
+        
+        static{
+                //攻击图片数组
+                File dir = new File("graphics/battle");
+                File[] files = dir.listFiles();
+                BATTLES = new ArrayList<Image>();
+                for (File file : files) {
+                        if(file.isDirectory())
+                                continue;                       
+                        BATTLES.add(new ImageIcon(file.getPath()).getImage());
                 }
         }
 }
