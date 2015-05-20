@@ -18,7 +18,7 @@ public class GameDto {
 	/**
 	 * 现在的文明发展程度(进度条比例)
 	 */
-	private double percent;
+	private int point;
 	/**
 	 * 现在星球位置
 	 */
@@ -44,12 +44,12 @@ public class GameDto {
 		this.nowLevel = nowLevel;
 	}
 
-	public double getPercent() {
-		return percent;
+	public int getNowPoint() {
+		return point;
 	}
 
-	public void setPercent(double percent) {
-		this.percent = percent;
+	public void setNowPoint(int point) {
+		this.point = point;
 	}
 
 	public Point getNowLocation() {

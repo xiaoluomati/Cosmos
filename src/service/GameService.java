@@ -32,15 +32,13 @@ public class GameService {
 		dto.setBattleAct(battleAct);
 	}
 
-	public void percentIncrease() {
-		this.dto.getGameAct().setPercent(this.dto.getPercent() + 0.01);
-	}
-
 	public void levelUp() {
-		if (this.dto.getPercent() == 1.0) {
-			this.dto.getGameAct().setNowLevel(this.dto.getNowLevel() + 1);
-			this.dto.getGameAct().setPercent(0.0);
-		}
+		int nowLevel = this.dto.getNowLevel();
+		int nowPoint = this.dto.getNowPoint();
+		nowLevel++;
+		nowPoint++;
+		this.dto.setNowLevel(nowLevel);
+		this.dto.setNowPoint(nowPoint);
 	}
 
 	public void startGame() {
@@ -73,9 +71,7 @@ public class GameService {
 	}
 
 	public void TESTkeyE() {
-		int nowLevel = this.dto.getNowLevel();
-		nowLevel++;
-		this.dto.setNowLevel(nowLevel);
+		this.levelUp();
 	}
 
 }

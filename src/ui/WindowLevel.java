@@ -26,7 +26,7 @@ public class WindowLevel extends Window {
 	@Override
 	public void paint(Graphics g) {
 		this.createWindow(g);
-		this.drawRect(this.x + expX, this.y + expY, expW, expH, 18, 30, g);
+		this.drawRect(this.x + expX, this.y + expY, expW, expH, this.gameDto.getNowPoint(), 30, g);
 		g.drawImage(Img.LVEVL, this.x + 30, this.y + expY, null);
 		this.drawNumber(this.x + Img.LVEVL.getWidth(null) + 50, 
 						this.y + (expY >> 1), 

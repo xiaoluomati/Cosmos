@@ -63,7 +63,7 @@ public class BattleAct {
 		if (act.getPercent() > beginningOfLevel || act.getNowLevel() == 0)
 			return;
 		Point point = battleLocation;
-		g.drawImage(Img.BATTLES.get(battleLevel), point.x, point.y,
+		g.drawImage(Img.BATTLES.get(6), point.x, point.y,
 				BATTLE_SIZE, BATTLE_SIZE, null);
 	}
 
