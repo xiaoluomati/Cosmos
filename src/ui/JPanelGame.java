@@ -17,7 +17,7 @@ public class JPanelGame extends JPanel {
 
 	private GameAct act;
 
-//	private BattleAct battleAct;
+	private BattleAct battleAct;
 	
 	private GameControl gameControl;
 
@@ -47,8 +47,9 @@ public class JPanelGame extends JPanel {
 		g.drawImage(act.getStarImage(), act.getStarLocation().x,
 				act.getStarLocation().y, GameAct.STAR_SIZE, GameAct.STAR_SIZE,
 				null);
-//		this.battleAct = new BattleAct(act);
-//		battleAct.battleMove(g, 1, battleAct.directionToPoint(0), act.getStarLocation());
+		this.battleAct = dto.getBattleAct();
+                battleAct.battleMove(g,this.battleAct.fixPosition(act.getStarLocation()));
+		
 		this.requestFocus();
 	}
 

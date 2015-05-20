@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -36,17 +37,25 @@ public class Img {
                 }
         }
         
-        public static final ArrayList<Image> BATTLES;
+        public static final ArrayList<BufferedImage> BATTLES;
         
         static{
                 //攻击图片数组
                 File dir = new File("graphics/battle");
                 File[] files = dir.listFiles();
-                BATTLES = new ArrayList<Image>();
+                BATTLES = new ArrayList<BufferedImage>();
                 for (File file : files) {
                         if(file.isDirectory())
                                 continue;                       
-                        BATTLES.add(new ImageIcon(file.getPath()).getImage());
+                        Image image = new ImageIcon(file.getPath()).getImage();
+                        BufferedImage bufferedImage = new BufferedImage(
+                                        image.getWidth(null),
+                                        image.getHeight(null),
+                                        BufferedImage.TYPE_INT_ARGB);
+                        Graphics g = bufferedImage.createGraphics();  
+                        g.drawImage(image, 0, 0, null);  
+                        g.dispose();  
+                        BATTLES.add(bufferedImage);
                 }
         }
 }
