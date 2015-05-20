@@ -8,12 +8,12 @@ import entity.GameAct;
 import ui.*;
 
 public class GameService {
-	
+
 	/**
 	 * 游戏数据对象
 	 */
 	private GameDto dto;
-	
+
 	/**
 	 * 随机数生成器
 	 */
@@ -22,7 +22,7 @@ public class GameService {
 	private JPanelGame jPanelGame;
 
 	private JFrameStart frameStart;
-	
+
 	public GameService(JPanelGame jPanelGame, GameDto dto) {
 		this.jPanelGame = jPanelGame;
 		this.dto = dto;
@@ -32,16 +32,16 @@ public class GameService {
 		dto.setBattleAct(battleAct);
 	}
 
-	public void percentIncrease(){
-	        this.dto.getGameAct().setPercent(this.dto.getPercent() + 0.01);
+	public void percentIncrease() {
+		this.dto.getGameAct().setPercent(this.dto.getPercent() + 0.01);
 	}
-	
+
 	public void levelUp() {
-	        if (this.dto.getPercent() == 1.0) {
-	                this.dto.getGameAct().setNowLevel(this.dto.getNowLevel() + 1);
-	                this.dto.getGameAct().setPercent(0.0);
-                }       
-        }
+		if (this.dto.getPercent() == 1.0) {
+			this.dto.getGameAct().setNowLevel(this.dto.getNowLevel() + 1);
+			this.dto.getGameAct().setPercent(0.0);
+		}
+	}
 
 	public void startGame() {
 		this.frameStart.add(jPanelGame);
@@ -50,7 +50,7 @@ public class GameService {
 	public void setFrameStart(JFrameStart frameStart) {
 		this.frameStart = frameStart;
 	}
-	
+
 	/**
 	 * 移动幅度
 	 */
@@ -68,13 +68,14 @@ public class GameService {
 		this.dto.getGameAct().starMove(-moveStep, 0);
 	}
 
-
 	public void keyRight() {
 		this.dto.getGameAct().starMove(moveStep, 0);
 	}
 
-    public void TESTkeyE() {
-                
-    }
+	public void TESTkeyE() {
+		int nowLevel = this.dto.getNowLevel();
+		nowLevel++;
+		this.dto.setNowLevel(nowLevel);
+	}
 
 }

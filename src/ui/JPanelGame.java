@@ -65,8 +65,9 @@ public class JPanelGame extends JPanel {
 		this.act = dto.getGameAct();
 		
 		// 值槽窗口
-		new WindowLevel(0.4, 0.01, 0.35, 0.05).paint(g);
-		
+		WindowLevel windowLevel = new WindowLevel(0.4, 0.01, 0.35, 0.05);
+		windowLevel.setGameDto(dto);
+		windowLevel.paint(g);
 		g.drawImage(act.getStarImage(), act.getStarLocation().x,
 				act.getStarLocation().y, GameAct.STAR_SIZE, GameAct.STAR_SIZE,
 				null);

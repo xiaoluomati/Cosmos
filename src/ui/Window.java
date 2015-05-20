@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.*;
 
+import dto.*;
 import util.*;
 
 abstract public class Window {
@@ -29,6 +30,8 @@ abstract public class Window {
 
 	// 数字高度
 	protected static final int NUMBER_H = Img.NUMBER.getHeight(null);
+	
+	protected GameDto gameDto = null;
 	
 	public Window(double ratioX, double ratioY, double ratioW, double ratioH) {
 		this.x = (int)(ratioX * SCREEN_W);
@@ -68,4 +71,7 @@ abstract public class Window {
 		}
 	}
 	
+	public void setGameDto(GameDto gameDto) {
+		this.gameDto = gameDto;
+	}
 }
