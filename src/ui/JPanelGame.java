@@ -21,7 +21,28 @@ public class JPanelGame extends JPanel {
 	private GameControl gameControl;
 
 	private ButtonExit buttonExit;
+	
+	private static final int SCREEN_H;
+	
+	private static final int SCREEN_W;
 
+	private static final int EXIT_X;
+	
+	private static final int EXIT_Y;
+	
+	private static final int EXIT_W;
+	
+	private static final int EXIT_H;
+	
+	static {
+		SCREEN_H = FrameUtil.SCREEN_SIZE.height;
+		SCREEN_W = FrameUtil.SCREEN_SIZE.width;
+		EXIT_X = (int) (0.95 * SCREEN_W);
+		EXIT_Y = (int) (0.01 * SCREEN_H);
+		EXIT_W = 72;
+		EXIT_H = 72;
+	}
+	
 	public JPanelGame(GameControl gameControl, GameDto dto) {
 		this.gameControl = gameControl;
 		this.dto = dto;
@@ -33,17 +54,19 @@ public class JPanelGame extends JPanel {
 	private void initComponent() {
 
 		buttonExit = new ButtonExit(Img.GAME_EXIT_DARK, Img.GAME_EXIT_LIGHT);
-		buttonExit.setBounds(FrameUtil.SCREEN_SIZE.width - 28, 8, 18, 18);
+		buttonExit.setBounds(EXIT_X, EXIT_Y, EXIT_W, EXIT_H);
 		this.add(buttonExit);
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		System.out.println("11");
 		g.drawImage(Img.BG_GAME, 0, 0, FrameUtil.SCREEN_SIZE.width,
 				FrameUtil.SCREEN_SIZE.height, null);
 		this.act = dto.getGameAct();
-
+		
+		// 值槽窗口
+		new WindowLevel(0.4, 0.01, 0.35, 0.05).paint(g);
+		
 		g.drawImage(act.getStarImage(), act.getStarLocation().x,
 				act.getStarLocation().y, GameAct.STAR_SIZE, GameAct.STAR_SIZE,
 				null);

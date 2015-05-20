@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
-	<frame buttonW = "160" buttonH = "40">
+	<frame buttonW="160" buttonH="40" expXRatio="0.35" expYRatio="0.2"
+		   expWRatio="0.6" expHRatio="0.6">
 	</frame>
 	
 	<system numOfStar = "10" sizeOfStar = "50" nearSide = "64" moveStep = "9">
