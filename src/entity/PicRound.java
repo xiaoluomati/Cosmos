@@ -11,6 +11,7 @@ public class PicRound {
                 double radian = angle * Math.PI / 180;
                 return picRound(bufferedImage, radian);
         }
+        
         public static BufferedImage picRound (BufferedImage bufferedImage, double radian){
                 final int CENTER_X = bufferedImage.getWidth() / 2;
                 final int CENTER_Y = bufferedImage.getHeight() / 2;

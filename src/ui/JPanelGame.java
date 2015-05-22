@@ -49,7 +49,6 @@ public class JPanelGame extends JPanel {
 				null);
 		this.battleAct = dto.getBattleAct();
                 battleAct.battleMove(g,this.battleAct.fixPosition(act.getStarLocation()));
-		
 		this.requestFocus();
 	}
 

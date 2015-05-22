@@ -1,7 +1,6 @@
 package entity;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -21,7 +20,8 @@ public class BattleAct {
         /**
          * 表示原图偏离基准线的角度
          */
-        private static final int[] BASE_ANGLE = { 270, 225, 0, 0, 0, 180, 0, 15 };
+        private static final int[] BASE_ANGLE = { 45,45,135,45,30,225,180,45 };
+        
         /**
          * 表示percent小于该值时认为是发展初期
          */
@@ -40,42 +40,43 @@ public class BattleAct {
          */
         private int angle;
         private int numOfBattle;
-//        private static int side ;
+        private int side ;
         
         /**
          * @param numOfBattle 表明是第几次攻击
          */
         public BattleAct(GameAct act, int numOfBattle) {
                 this.act = act;
-//                this.side = act.getNearside() ;
+                this.side = act.getNearside() ;
                 this.numOfBattle = numOfBattle;
-                this.angle = BASE_ANGLE[numOfBattle];
-                this.battleLevel = numOfBattle == 0 ? random.nextInt(act.getNowLevel() + 1) + 1 : act.getNowLevel();
+                this.battleLevel = 7;
+//                this.battleLevel = this.numOfBattle == 0 ? random.nextInt(act.getNowLevel() + 1) + 1 : act.getNowLevel();
+                this.angle = BASE_ANGLE[this.battleLevel];
                 this.battleLocation = directionToPoint(random.nextInt(4));             
         }
         
         /**
          * 画出开始时攻击的图
          */
-        public void beginBattle(Graphics g) {               
+        public void beginBattle(Graphics g, Point directionVector) {               
                 if(act.getPercent() > beginningOfLevel || act.getNowLevel() == 0)
                         return;
-                Point point = battleLocation;
-                g.drawImage(Img.BATTLES.get(battleLevel), point.x,
-                                point.y, BATTLE_SIZE, BATTLE_SIZE, null);
+                g.drawImage(fixImg(Img.BATTLES.get(this.battleLevel),directionVector), battleLocation.x,
+                                battleLocation.y, BATTLE_SIZE, BATTLE_SIZE, null);
         }
         
         /**
          * 将battle向directionVector所指的方向移动|directionVector|个像素
          * @param g 画笔
          */
-        public void battleMove(Graphics g,Point directionVector) {
+        public void battleMove(Graphics g, Point directionVector) {
                 // TODO 加判断
                 this.battleLocation.x += directionVector.x;
                 this.battleLocation.y += directionVector.y;
-                g.drawImage(fixImg(Img.BATTLES.get(battleLevel), directionVector),
-                                this.battleLocation.x, this.battleLocation.y,
-                                BATTLE_SIZE, BATTLE_SIZE, null);       
+                g.drawImage(fixImg(Img.BATTLES.get(this.battleLevel),
+                                directionVector), this.battleLocation.x,
+                                this.battleLocation.y, BATTLE_SIZE,
+                                BATTLE_SIZE, null);
         }
                
         /**
@@ -88,21 +89,33 @@ public class BattleAct {
                 return minVector(vectorX, vectorY) ;
         }
         
+        public boolean isOutOfBound() {
+                int x1 = this.side;
+                int x2 = FrameUtil.SCREEN_SIZE.getSize().width - this.side
+                                - BATTLE_SIZE;
+                int y1 = this.side;
+                int y2 = FrameUtil.SCREEN_SIZE.getSize().height - this.side
+                                - BATTLE_SIZE;
+                return this.battleLocation.x > x2 || this.battleLocation.x < x1
+                                || this.battleLocation.y > y2
+                                || this.battleLocation.y < y1;
+        }
+        
         private BufferedImage fixImg(BufferedImage image,Point directionVector) {
-                double directionAngle;
+                double directionRadian;
                 if (directionVector.x >= 0 && directionVector.y >= 0) {
-                        directionAngle = Math.atan(directionVector.getY()/directionVector.getX());
+                        directionRadian = Math.atan(directionVector.getY()
+                                        / directionVector.getX());
+                } else if (directionVector.x < 0) {
+                        directionRadian = Math.atan(directionVector.getY()
+                                        / directionVector.getX())
+                                        + Math.PI;
+                } else {
+                        directionRadian = Math.atan(directionVector.getY()
+                                        / directionVector.getX())
+                                        + 2 * Math.PI;
                 }
-                else if(directionVector.x < 0){
-                        directionAngle = Math.atan(directionVector.getY()/directionVector.getX()) + Math.PI;
-                }
-                else{
-                        directionAngle = Math.atan(directionVector.getY()/directionVector.getX()) + 2 * Math.PI;
-                }
-                this.angle = (int) (directionAngle/Math.PI * 180 - this.angle);
-                System.out.println(directionAngle/Math.PI * 180);
-                System.out.println(directionVector.x);
-                System.out.println(directionVector.y);
+                this.angle = (int) (directionRadian/Math.PI * 180 - BASE_ANGLE[this.battleLevel]);
                 return PicRound.picRound(image, this.angle);
         }
         
@@ -125,26 +138,22 @@ public class BattleAct {
          * @param direction 0 表示左上角，逆时针方向
          */
         private Point directionToPoint(int direction){
-                int x1 = this.act.getNearside();
+                int x1 = this.side;
                 int x2 = FrameUtil.SCREEN_SIZE.getSize().width
-                                - this.act.getNearside() - BATTLE_SIZE;
-                int y1 = this.act.getNearside();
+                                - this.side - BATTLE_SIZE;
+                int y1 = this.side;
                 int y2 = FrameUtil.SCREEN_SIZE.getSize().height
-                                - this.act.getNearside() - BATTLE_SIZE;
+                                - this.side - BATTLE_SIZE;
                 
                 Point[] points = { new Point(x1, y1), new Point(x2, y1),
                                 new Point(x1, y2), new Point(x2, y2) };        
                 return points[direction];
         }
 
-        
         public Point getBattleLocation() {
                 return battleLocation;
         }
 
-        public void setBattleLocation(Point battleLocation) {
-                this.battleLocation = battleLocation;
-        }
         
         
 }
